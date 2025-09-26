@@ -15,19 +15,19 @@ let yPos4 = 645;
 let xPos4 = -260;
 
 let level = 1;
-let livese = 3;
+let lives = 3;
 
 let pl;
 let end;
 
 let pX = 300;
 let pY = 760;
- 
-function preload(){
-end = loadImage('img/end.png')
-pl = loadImage('img/player.png')
+
+function preload() {
+  end = loadImage('img/end.png')
+  pl = loadImage('img/player.png')
 }
-  
+
 function setup() {
   //This function get run once at the start of the program
   createCanvas(600, 800);
@@ -43,7 +43,7 @@ function setup() {
 function draw() {
   background(100);
   noStroke();
-  
+
   fill(100, 207, 66); // makes spaces created below green
   rect(300, 50, 600, 100); // green spaces for chicken to chill
   rect(300, 290, 600, 100);
@@ -53,40 +53,99 @@ function draw() {
   drawCar(xPos1, yPos1, 140, 'red'); //draws a car 1
   drawCar(xPos2, yPos2, 140, 'yellow'); //draws a car  2
   drawCar(xPos3, yPos3, 140, 'blue'); //draws a car 3
-  xPos1 += 8 //makes car 1 move
-  xPos2 -=7 // makes car 2 move
-  xPos3 += 6 // make car 3 move
+  xPos1 += 9 //makes car 1 move
+  xPos2 -= 8 // makes car 2 move
+  xPos3 += 7 // make car 3 move
   movePlayer();
   drawPlayer(pX, pY);
-  
+
   textSize(15);
   text('level: ' + level, 10, 30)
 
-  if (pY <= 50){
-    levle+=1
+   textSize(15);
+  text('lives: ' + lives, 550, 30)
+
+  if (lives <= 0){
+    level -= 1;
+  }
+
+  if (pY <= 50) {
+    level += 1;
     pX = 300;
     pY = 760;
   }
 
-   if (abs(pX - xPos3)<=90){
-    if (abs(pY-yPos3)<=55){
+  if (level == 2) {
+    xPos1 += 10;
+    xPos2 -= 9;
+    xPos3 += 8;
+  }
+
+    if (level == 3) {
+    xPos1 += 11;
+    xPos2 -= 10;
+    xPos3 += 9;
+  }
+
+    if (level == 4) {
+    xPos1 += 12;
+    xPos2 -= 11;
+    xPos3 += 10;
+  }
+
+      if (level == 5) {
+    xPos1 += 13;
+    xPos2 -= 12;
+    xPos3 += 11;
+  }
+
+  if (abs(pX - xPos3) <= 90) {
+    if (abs(pY - yPos3) <= 55) {
       background('red')
       pX = 300;
       pY = 760;
+      lives -= 1;
     }
   }
 
-   if (xPos2>= -70){
-  xPos2 = random(5660, -400);
- }
+  if (abs(pX - xPos2) <= 90) {
+    if (abs(pY - yPos2) <= 55) {
+      background('red')
+      pX = 300;
+      pY = 760;
+      lives -= 1;
+    }
+  }
 
-  if (xPos1>= 700){
-  xPos1 = random(-60, -400);
- }
+    if (abs(pX - xPos1) <= 90) {
+    if (abs(pY - yPos1) <= 55) {
+      background('red')
+      pX = 300;
+      pY = 760;
+      lives -= 1;
+    }
+  }
 
- if (xPos3>= 700){
-  xPos3 = random(-60, -400);
- }
+    if (abs(pX - xPos4) <= 90) {
+    if (abs(pY - yPos4) <= 55) {
+      background('red')
+      pX = 300;
+      pY = 760;
+      lives -= 1;
+    }
+  }
+
+  if (xPos2 <= -70) {
+    xPos2 = random(660, 900);
+  }
+
+  if (xPos1 >= 700) {
+    xPos1 = random(-60, -400);
+  }
+
+  if (xPos3 >= 700) {
+    xPos3 = random(-60, -400);
+  }
 
 
   function drawPlayer(x, y) {
