@@ -96,6 +96,7 @@ function draw() {
 
   if (lives <= 0) {
     level -= 1;
+    lives += 3;
   }
 
   if (level <= 0) {
@@ -131,6 +132,11 @@ function draw() {
     xPos1 += 13;
     xPos2 -= 12;
     xPos3 += 11;
+  }
+
+  if (level >= 6){
+      background('white');
+    text('duck got home!', 300, 300);
   }
 
   if (abs(pX - xPos3) <= 90) {
